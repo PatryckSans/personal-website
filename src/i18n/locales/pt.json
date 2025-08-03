@@ -1,0 +1,21 @@
+{
+  "welcome": "Bem-vindo ao meu portfólio",
+  "about": "Sobre",
+  "projects": "Projetos",
+  "experience": "Experiência",
+  "contact": "Contato",
+  "skills": "Habilidades",
+  "hero": {
+    "greeting": "Olá, eu sou",
+    "name": "Patryck Sans",
+    "role": "Desenvolvedor Full Stack",
+    "description": "Criando experiências digitais inovadoras e soluções web de alta qualidade."
+  },
+  "form": {
+    "name": "Nome",
+    "email": "Email",
+    "message": "Mensagem",
+    "send": "Enviar Mensagem",
+    "connect": "Conecte-se comigo"
+  }
+}
