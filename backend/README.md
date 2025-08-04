@@ -1,40 +1,32 @@
-# Backend Serverless
+# Backend - Personal Website
 
-Backend serverless para o site de portfólio pessoal.
+## Configuração
 
-## 🚀 Tecnologias (Planejadas)
-
-- **AWS Lambda** para funções serverless
-- **API Gateway** para endpoints REST
-- **DynamoDB** para banco de dados NoSQL
-- **S3** para armazenamento de arquivos
-- **CloudFormation/CDK** para Infrastructure as Code
-- **Node.js/TypeScript** para desenvolvimento
-
-## 📁 Estrutura (Planejada)
-
-```
-backend/
-├── src/
-│   ├── functions/          # Funções Lambda
-│   ├── models/            # Modelos de dados
-│   ├── services/          # Lógica de negócio
-│   ├── utils/             # Utilitários
-│   └── types/             # Tipos TypeScript
-├── infrastructure/        # IaC (CloudFormation/CDK)
-├── tests/                # Testes unitários
-└── docs/                 # Documentação da API
+1. Instalar dependências:
+```bash
+npm install
 ```
 
-## 🔧 Funcionalidades (Planejadas)
+2. Configurar AWS CLI com suas credenciais
 
-- API para contato/formulários
-- Gerenciamento de conteúdo
-- Analytics básicos
-- Autenticação (se necessário)
+3. Verificar email no Amazon SES:
+   - Acesse o console do SES
+   - Verifique o email `patrycksans@gmail.com`
 
-## 🚀 Deploy (Planejado)
+## Deploy
 
-- Deploy automatizado via CI/CD
-- Ambientes: dev, staging, prod
-- Monitoramento com CloudWatch
+```bash
+./deploy.sh
+```
+
+## Estrutura
+
+- `src/functions/contact/handler.ts` - Função Lambda para processar formulário de contato
+- `template.yaml` - Template SAM para infraestrutura
+- `deploy.sh` - Script de deploy
+
+## Variáveis de Ambiente
+
+- `FROM_EMAIL` - Email remetente (deve estar verificado no SES)
+- `TO_EMAIL` - Email destinatário
+- `AWS_REGION` - Região AWS (padrão: us-east-1)

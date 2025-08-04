@@ -1,6 +1,6 @@
-import React from 'react';
-import { WavesContainer, WavesSvg } from './Waves.styles';
-import { WavesProps } from './Waves.types';
+import React from 'react'
+import { WavesContainer, WavesSvg } from './Waves.styles'
+import { WavesProps } from './Waves.types'
 
 const Waves: React.FC<WavesProps> = ({ 
   colors = ['rgba(255,255,255,0.7)', 'rgba(255,255,255,0.5)', 'rgba(255,255,255,0.3)', '#fff'],
@@ -28,7 +28,7 @@ const Waves: React.FC<WavesProps> = ({
         </g>
       </WavesSvg>
     </WavesContainer>
-  );
-};
+  )
+}
 
-export default Waves;
+export default Waves

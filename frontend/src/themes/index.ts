@@ -2,7 +2,7 @@ import { ThemeConfig } from 'antd'
 
 export const theme: ThemeConfig = {
   token: {
-    colorPrimary: '#3B82F6',
+    colorPrimary: '#80c7f9',
     colorBgBase: '#000000',
     colorTextBase: '#FFFFFF',
     fontFamily: 'JetBrains Mono, monospace',
@@ -18,13 +18,13 @@ export const theme: ThemeConfig = {
 
 export const colors = {
   primary: '#6B46C1',
-  secondary: '#3B82F6',
+  secondary: '#80c7f9',
   accent: '#10B981',
   background: 'linear-gradient(180deg,#430559,#65177a 57%,#000)',
   text: '#FFFFFF',
   textSubtitle: '#E5E7EB',
   textMuted: '#9CA3AF',
-  textHighlight: '#60A5FA',
+  textHighlight: '#80c7f9',
 }
 
 export const fontSizes = {

@@ -1,0 +1,5 @@
+environment = "prod"
+from_email  = "patrycksans@gmail.com"
+to_email    = "patrycksans@gmail.com"
+aws_region  = "us-east-1"
+domain_name = "patrycksans.com"

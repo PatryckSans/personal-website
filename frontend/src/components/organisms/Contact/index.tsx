@@ -1,97 +1,109 @@
-import React from 'react'
-import { Form, Input, Button, Row, Col } from 'antd'
-import { GithubOutlined, LinkedinOutlined, MailOutlined } from '@ant-design/icons'
-import { ContactContainer, ContactContent, Title, FormSection, SocialSection, SocialButton } from './Contact.styles'
+import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Form, Input, Button, Row, Col, message } from 'antd'
+import {
+  GithubOutlined,
+  LinkedinOutlined,
+  MailOutlined,
+} from '@ant-design/icons'
+import {
+  ContactContainer,
+  ContactContent,
+  Title,
+  StyledCard,
+  SocialButton,
+} from './Contact.styles'
+import { InteractiveCat } from '@/components/atoms'
+import { sendContactForm } from '@/services/api/contact'
 
 const { TextArea } = Input
 
 export const Contact: React.FC = () => {
+  const { t } = useTranslation()
   const [form] = Form.useForm()
+  const [loading, setLoading] = useState(false)
 
-  const onFinish = (values: any) => {
-    console.log('Form values:', values)
-    // Implementar envio do formulário
+  const onFinish = async (values: any) => {
+    setLoading(true)
+    try {
+      await sendContactForm(values)
+      message.success(t('form.sendSuccess'))
+      form.resetFields()
+    } catch (error) {
+      message.error(t('form.sendError'))
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
     <ContactContainer>
       <ContactContent>
-        <Title>Contato</Title>
-        <Row gutter={[48, 48]}>
-          <Col xs={24} lg={12}>
-            <FormSection>
-              <Form
-                form={form}
-                layout="vertical"
-                onFinish={onFinish}
-                size="large"
+        <InteractiveCat width={600} height={90} />
+        <StyledCard>
+          <Title>{t('contact')}</Title>
+            <Form
+              form={form}
+              layout="vertical"
+              onFinish={onFinish}
+              size="middle"
+            >
+              <Row gutter={16}>
+                <Col xs={24} sm={12}>
+                  <Form.Item
+                    name="name"
+                    rules={[{ required: true, message: t('form.nameRequired') }]}
+                  >
+                    <Input placeholder={t('form.name')} />
+                  </Form.Item>
+                </Col>
+                <Col xs={24} sm={12}>
+                  <Form.Item
+                    name="email"
+                    rules={[
+                      { required: true, message: t('form.emailRequired') },
+                      { type: 'email', message: t('form.emailInvalid') },
+                    ]}
+                  >
+                    <Input placeholder={t('form.email')} />
+                  </Form.Item>
+                </Col>
+              </Row>
+
+              <Form.Item
+                name="message"
+                rules={[{ required: true, message: t('form.messageRequired') }]}
               >
-                <Form.Item
-                  name="name"
-                  label="Nome"
-                  rules={[{ required: true, message: 'Por favor, insira seu nome' }]}
-                >
-                  <Input placeholder="Seu nome" />
-                </Form.Item>
+                <TextArea rows={3} placeholder={t('form.message')} />
+              </Form.Item>
 
-                <Form.Item
-                  name="email"
-                  label="Email"
-                  rules={[
-                    { required: true, message: 'Por favor, insira seu email' },
-                    { type: 'email', message: 'Email inválido' }
-                  ]}
-                >
-                  <Input placeholder="seu@email.com" />
-                </Form.Item>
-
-                <Form.Item
-                  name="message"
-                  label="Mensagem"
-                  rules={[{ required: true, message: 'Por favor, insira sua mensagem' }]}
-                >
-                  <TextArea rows={4} placeholder="Sua mensagem..." />
-                </Form.Item>
-
-                <Form.Item>
-                  <Button type="primary" htmlType="submit" block>
-                    Enviar Mensagem
+              <Row justify="space-between" align="middle">
+                <Col>
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    <SocialButton
+                      icon={<LinkedinOutlined />}
+                      href="https://linkedin.com/in/patrycksans"
+                      target="_blank"
+                    />
+                    <SocialButton
+                      icon={<GithubOutlined />}
+                      href="https://github.com/patrycksans"
+                      target="_blank"
+                    />
+                    <SocialButton
+                      icon={<MailOutlined />}
+                      href="mailto:patrycksans@gmail.com"
+                    />
+                  </div>
+                </Col>
+                <Col>
+                  <Button type="primary" htmlType="submit" loading={loading}>
+                    {t('form.send')}
                   </Button>
-                </Form.Item>
-              </Form>
-            </FormSection>
-          </Col>
-          <Col xs={24} lg={12}>
-            <SocialSection>
-              <h3>Conecte-se comigo</h3>
-              <div>
-                <SocialButton 
-                  type="primary" 
-                  icon={<LinkedinOutlined />}
-                  href="https://linkedin.com/in/patryck-sans"
-                  target="_blank"
-                >
-                  LinkedIn
-                </SocialButton>
-                <SocialButton 
-                  type="default" 
-                  icon={<GithubOutlined />}
-                  href="https://github.com/patryck-sans"
-                  target="_blank"
-                >
-                  GitHub
-                </SocialButton>
-                <SocialButton 
-                  type="primary" 
-                  icon={<MailOutlined />}
-                  href="mailto:patryck@email.com"
-                >
-                  Email
-                </SocialButton>
-              </div>
-            </SocialSection>
-          </Col>
-        </Row>
+                </Col>
+              </Row>
+            </Form>
+          </StyledCard>
       </ContactContent>
     </ContactContainer>
   )

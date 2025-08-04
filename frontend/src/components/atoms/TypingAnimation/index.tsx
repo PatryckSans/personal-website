@@ -1,6 +1,6 @@
-import React from 'react';
-import { TypingContainer } from './TypingAnimation.styles';
-import { TypingAnimationProps } from './TypingAnimation.types';
+import React from 'react'
+import { TypingContainer } from './TypingAnimation.styles'
+import { TypingAnimationProps } from './TypingAnimation.types'
 
 export const TypingAnimation: React.FC<TypingAnimationProps> = ({
   text,
@@ -21,5 +21,5 @@ export const TypingAnimation: React.FC<TypingAnimationProps> = ({
     >
       {text}
     </TypingContainer>
-  );
-};
+  )
+}

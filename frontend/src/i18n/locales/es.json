@@ -1,7 +1,48 @@
 {
   "welcome": "Bienvenido a mi portafolio",
-  "about": "Acerca de",
+  "about-title": "Acerca de",
   "projects": "Proyectos",
   "experience": "Experiencia",
-  "contact": "Contacto"
+  "contact": "Contacto",
+  "skills": "Habilidades",
+  "hero": {
+    "greeting": "Hola, soy",
+    "name": "Patryck Sans",
+    "role": "Desarrollador Full Stack con enfoque en Front-end",
+    "description": "Apasionado por crear soluciones web innovadoras e interfaces que brindan la mejor experiencia al usuario."
+  },
+  "about": {
+    "title": "Sobre Mí",
+    "subtitle": "Conoce un poco sobre mi trayectoria y habilidades",
+    "role": "Desarrollador Full Stack con enfoque en Front-end",
+    "description": "Desarrollador Full Stack con enfoque en Front-end, gran entusiasta de la programación desde los 15 años. Graduado en Análisis y Desarrollo de Sistemas del Centro Universitario Senac Santo Amaro y técnico en Automatización Industrial. Actualmente trabajo como Analista de Desarrollo en ST IT Cloud, enfocándome en soluciones de Diseño UX y Front-end Web. Soy una persona con buen humor, dispuesta a resolver desafíos y siempre en busca de nuevas experiencias y aprendizajes."
+  },
+  "form": {
+    "name": "Nombre",
+    "email": "Email",
+    "message": "Mensaje",
+    "send": "Enviar Mensaje",
+    "connect": "Conéctate conmigo",
+    "nameRequired": "Nombre requerido",
+    "emailRequired": "Email requerido",
+    "emailInvalid": "Email inválido",
+    "messageRequired": "Mensaje requerido",
+    "sendSuccess": "¡Mensaje enviado con éxito!",
+    "sendError": "Error al enviar mensaje. Inténtalo de nuevo."
+  },
+  "footer": {
+    "copyright": "Desarrollado con ❤️ por",
+    "rights": "Todos los derechos reservados."
+  },
+  "theme": "Tema",
+  "profileAlt": "Foto de perfil",
+  "experienceTitle": "Experiencia y Educación",
+  "experienceItems": {
+    "analystTitle": "Analista de Desarrollo",
+    "analystDescription": "Análisis, Diseño, Desarrollo, Pruebas y Mantenimiento de sistemas web enfocados en aplicaciones React. Especialización en soluciones de Diseño UX y Front-end Web.",
+    "systemsTitle": "Análisis y Desarrollo de Sistemas",
+    "systemsDescription": "Licenciatura en Análisis y Desarrollo de Sistemas enfocada en desarrollo web, lógica de programación y construcción de interfaces gráficas.",
+    "automationTitle": "Técnico en Automatización Industrial",
+    "automationDescription": "Formación técnica en Automatización Industrial, donde profundicé mis conocimientos en tecnología y desarrollé proyectos de IoT, incluyendo la creación de un \"Arpa Láser\"."
+  }
 }

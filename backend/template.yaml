@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Parameters:
+  FromEmail:
+    Type: String
+    Description: Email remetente (deve estar verificado no SES)
+  ToEmail:
+    Type: String
+    Description: Email destinatário
+
+Globals:
+  Function:
+    Timeout: 30
+    Runtime: nodejs18.x
+
+Resources:
+  ContactFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: dist/functions/contact/
+      Handler: handler.handler
+      Environment:
+        Variables:
+          FROM_EMAIL: !Ref FromEmail
+          TO_EMAIL: !Ref ToEmail
+      Policies:
+        - SESCrudPolicy:
+            IdentityName: !Ref FromEmail
+      Events:
+        ContactApi:
+          Type: Api
+          Properties:
+            Path: /contact
+            Method: post
+            Cors:
+              AllowMethods: "'POST, OPTIONS'"
+              AllowHeaders: "'Content-Type'"
+              AllowOrigin: "'*'"
+
+Outputs:
+  ContactApi:
+    Description: "API Gateway endpoint URL"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/contact"

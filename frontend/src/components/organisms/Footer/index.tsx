@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Row, Col } from 'antd'
 import {
   GithubOutlined,
@@ -17,6 +18,7 @@ import {
 } from './Footer.styles'
 
 export const Footer = () => {
+  const { t } = useTranslation()
   const currentYear = new Date().getFullYear()
 
   return (
@@ -27,14 +29,14 @@ export const Footer = () => {
             <Col xs={24} md={8}>
               <FooterSection>
                 <FooterTitle>Patryck Sans</FooterTitle>
-                <FooterText>Desenvolvedor Full Stack</FooterText>
-                <FooterText>Criando soluções web inovadoras</FooterText>
+                <FooterText>{t('hero.role')}</FooterText>
+                <FooterText>{t('hero.description')}</FooterText>
               </FooterSection>
             </Col>
             <Col xs={24} md={8}>
               <FooterSection>
-                <FooterTitle>Contato</FooterTitle>
-                <FooterText>patryck@email.com</FooterText>
+                <FooterTitle>{t('contact')}</FooterTitle>
+                <FooterText>patrycksans@gmail.com</FooterText>
                 <FooterText>São Paulo, Brasil</FooterText>
               </FooterSection>
             </Col>
@@ -43,18 +45,18 @@ export const Footer = () => {
                 <FooterTitle>Redes Sociais</FooterTitle>
                 <SocialLinks>
                   <SocialLink
-                    href="https://linkedin.com/in/patryck-sans"
+                    href="https://linkedin.com/in/patrycksans"
                     target="_blank"
                   >
                     <LinkedinOutlined /> LinkedIn
                   </SocialLink>
                   <SocialLink
-                    href="https://github.com/patryck-sans"
+                    href="https://github.com/patrycksans"
                     target="_blank"
                   >
                     <GithubOutlined /> GitHub
                   </SocialLink>
-                  <SocialLink href="mailto:patryck@email.com">
+                  <SocialLink href="mailto:patrycksans@gmail.com">
                     <MailOutlined /> Email
                   </SocialLink>
                 </SocialLinks>
@@ -62,7 +64,7 @@ export const Footer = () => {
             </Col>
           </Row>
           <Copyright>
-            © {currentYear} Patryck Sans. Todos os direitos reservados.
+            © {currentYear} Patryck Sans. {t('footer.rights')}
           </Copyright>
         </FooterContent>
       </FooterContainer>
