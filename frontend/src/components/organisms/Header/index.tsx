@@ -30,7 +30,7 @@ export const Header = ({ onThemeToggle, isDarkTheme = true }: HeaderProps) => {
 
   const menuItems = useMemo(
     () => [
-      { key: 'about', label: t('about') },
+      { key: 'about', label: t('about-title') },
       { key: 'projects', label: t('projects') },
       { key: 'experience', label: t('experience') },
       { key: 'contact', label: t('contact') },
@@ -106,7 +106,7 @@ export const Header = ({ onThemeToggle, isDarkTheme = true }: HeaderProps) => {
           />
 
           <ThemeSectionContainer>
-            <span>Tema:</span>
+            <span>{t('theme')}:</span>
             <StyledSwitch
               checked={isDarkTheme}
               onChange={onThemeToggle}

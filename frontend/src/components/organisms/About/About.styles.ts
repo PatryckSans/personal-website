@@ -20,7 +20,7 @@ export const AboutContainer = styled.section`
 
 export const AboutHeader = styled.div`
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 `
 
 export const Title = styled.h2`
@@ -50,7 +50,7 @@ export const AboutContent = styled.div`
   gap: 4rem;
   align-items: flex-start;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.mobile}) {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
@@ -59,8 +59,9 @@ export const AboutContent = styled.div`
 
 export const ProfileSection = styled.div`
   flex: 0 0 300px;
+  padding-top: 50px;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.mobile}) {
     flex: none;
   }
 `
@@ -108,22 +109,17 @@ export const InfoDescription = styled.p`
 export const SkillsList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
 `
 
 export const SkillItem = styled.div`
-  background: rgba(255, 255, 255, 0.05);
-  padding: 1.5rem;
-  border-radius: 12px;
-  border: 1px solid rgba(107, 70, 193, 0.2);
-  backdrop-filter: blur(10px);
+  padding: 0.5rem 0;
 `
 
 export const SkillInfo = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.8rem;
+  /* margin-bottom: 0.8rem; */
 `
 
 export const SkillName = styled.span`

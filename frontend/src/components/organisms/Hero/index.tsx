@@ -1,4 +1,7 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
+import { TypingAnimation } from '@components/atoms'
+import { colors } from '@themes/index'
 import {
   HeroContainer,
   HeroContent,
@@ -6,24 +9,24 @@ import {
   Name,
   Description,
 } from './Hero.styles'
-import { TypingAnimation } from '../../atoms/TypingAnimation'
 
 export const Hero: React.FC = () => {
+  const { t } = useTranslation()
+
   return (
     <HeroContainer>
       <HeroContent>
-        <Greeting>Olá, eu sou</Greeting>
-        <Name>Patryck Sans</Name>
-        <TypingAnimation 
-          text="Desenvolvedor Full Stack"
+        <Greeting>{t('hero.greeting')}</Greeting>
+        <Name>{t('hero.name')}</Name>
+        <TypingAnimation
+          text={t('hero.role')}
           speed={2.5}
           fontSize="1.8rem"
-          color="#3B82F6"
+          color={colors.secondary}
           fontFamily="JetBrains Mono"
         />
         <Description>
-          Criando experiências digitais inovadoras e soluções web de alta
-          qualidade.
+          {t('hero.description')}
         </Description>
       </HeroContent>
     </HeroContainer>

@@ -1,7 +1,48 @@
 {
   "welcome": "Welcome to my portfolio",
-  "about": "About",
+  "about-title": "About",
   "projects": "Projects",
   "experience": "Experience",
-  "contact": "Contact"
+  "contact": "Contact",
+  "skills": "Skills",
+  "hero": {
+    "greeting": "Hello, I'm",
+    "name": "Patryck Sans",
+    "role": "Full Stack Developer with Front-end focus",
+    "description": "Passionate about creating innovative web solutions and interfaces that provide the best user experience."
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Get to know a bit about my journey and skills",
+    "role": "Full Stack Developer with Front-end focus",
+    "description": "Full Stack Developer with Front-end focus, great programming enthusiast since age 15. Graduated in Systems Analysis and Development from Centro Universitário Senac Santo Amaro and technical degree in Industrial Automation. Currently working as Development Analyst at ST IT Cloud, focusing on UX Design and Front-end Web solutions. I'm a good-humored person, willing to solve challenges and always seeking new experiences and learning."
+  },
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send Message",
+    "connect": "Connect with me",
+    "nameRequired": "Name is required",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email",
+    "messageRequired": "Message is required",
+    "sendSuccess": "Message sent successfully!",
+    "sendError": "Error sending message. Please try again."
+  },
+  "footer": {
+    "copyright": "Developed with ❤️ by",
+    "rights": "All rights reserved."
+  },
+  "theme": "Theme",
+  "profileAlt": "Profile photo",
+  "experienceTitle": "Experience & Education",
+  "experienceItems": {
+    "analystTitle": "Development Analyst",
+    "analystDescription": "Analysis, Design, Development, Testing and Maintenance of web systems focused on React applications. Specialization in UX Design and Front-end Web solutions.",
+    "systemsTitle": "Systems Analysis and Development",
+    "systemsDescription": "Bachelor's degree in Systems Analysis and Development focused on web development, programming logic and graphical interface construction.",
+    "automationTitle": "Industrial Automation Technician",
+    "automationDescription": "Technical training in Industrial Automation, where I deepened my knowledge in technology and developed IoT projects, including the creation of a \"Laser Harp\"."
+  }
 }

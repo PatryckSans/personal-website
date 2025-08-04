@@ -36,14 +36,22 @@ export const InteractiveCat: React.FC<InteractiveCatProps> = ({
     }
 
     const decideTurnDirection = () => {
-      if (!catRef.current || !posRef.current.x) return
+      if (!catRef.current || !posRef.current.x || !wrapperRef.current) return
 
       const catRect = catRef.current.getBoundingClientRect()
+      const wrapperRect = wrapperRef.current.getBoundingClientRect()
+      const relativeX = posRef.current.x - wrapperRect.left
+      
+      const maxX = width - 90
+      const minX = 10
+      
       if (catRect.x < posRef.current.x) {
-        setCatPosition({ x: posRef.current.x - 90, y: 0 })
+        const newX = Math.min(Math.max(relativeX - 90, minX), maxX)
+        setCatPosition({ x: newX, y: 0 })
         setFaceDirection('right')
       } else {
-        setCatPosition({ x: posRef.current.x + 10, y: 0 })
+        const newX = Math.min(Math.max(relativeX + 10, minX), maxX)
+        setCatPosition({ x: newX, y: 0 })
         setFaceDirection('left')
       }
     }

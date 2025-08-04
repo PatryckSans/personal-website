@@ -9,7 +9,7 @@ import {
   About,
   Footer,
 } from '@components/organisms'
-import { InteractiveCat, Waves } from '@components/atoms'
+import { Waves } from '@components/atoms'
 
 const { Content } = Layout
 
@@ -28,15 +28,14 @@ export const MainPage = () => {
         <About />
         <Skills />
         <Experience />
-        <InteractiveCat />
         <Contact />
       </Content>
       <Waves
         colors={[
-          'rgba(37, 21, 37, 0.144)',
-          'rgba(37, 21, 37, 0.247)',
-          'rgba(37, 21, 37, 0.493)',
-          'rgba(37, 21, 37, 0.603)',
+          'rgba(37, 21, 37, 0.356)',
+          'rgba(37, 21, 37, 0.397)',
+          'rgba(37, 21, 37, 0.596)',
+          'rgba(37, 21, 37, 0.801)',
         ]}
       />
       <Footer />
