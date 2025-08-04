@@ -57,3 +57,7 @@ backend/infrastructure/*.tfstate
 backend/infrastructure/*.tfstate.*
 backend/infrastructure/.terraform/
 backend/infrastructure/.terraform.lock.hcl
+infrastructure/*.tfstate
+infrastructure/*.tfstate.*
+infrastructure/.terraform/
+infrastructure/.terraform.lock.hcl
