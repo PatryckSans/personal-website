@@ -7,7 +7,7 @@ export const Skills: React.FC = () => {
   const { t } = useTranslation()
 
   return (
-    <SkillsContainer>
+    <SkillsContainer id="skills">
       <SkillsContent>
         <Title>{t('skills')}</Title>
         <SkillsTabBar />

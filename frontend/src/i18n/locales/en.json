@@ -44,5 +44,68 @@
     "systemsDescription": "Bachelor's degree in Systems Analysis and Development focused on web development, programming logic and graphical interface construction.",
     "automationTitle": "Industrial Automation Technician",
     "automationDescription": "Technical training in Industrial Automation, where I deepened my knowledge in technology and developed IoT projects, including the creation of a \"Laser Harp\"."
+  },
+  "personalLife": {
+    "title": "More about Patryck Sans when away from screens and code:",
+    "hobbies": {
+      "cycling": {
+        "title": "Cycling",
+        "content": "Riding through the city and exploring new paths"
+      },
+      "sailing": {
+        "title": "Sailing",
+        "content": "Navigating calm waters and enjoying the breeze"
+      },
+      "gastronomy": {
+        "title": "Gastronomy",
+        "content": "Exploring new flavors and culinary experiences"
+      },
+      "pets": {
+        "title": "Pets",
+        "content": "Special moments with my feline companion"
+      },
+      "events": {
+        "title": "Events",
+        "content": "Creating and experiencing unique and special moments"
+      }
+    }
+  },
+  "projectShowcase": {
+    "title": "Portfolio Site - Technical Architecture",
+    "subtitle": "React 18 • AWS Serverless • Infrastructure as Code",
+    "expandText": "Click to expand and see technical details",
+    "viewGithub": "View on GitHub",
+    "tabs": {
+      "structure": "Structure",
+      "code": "Code",
+      "infrastructure": "Infrastructure"
+    },
+    "sections": {
+      "projectOrganization": "Project Organization",
+      "customHook": "Custom Hook - useIsMobile",
+      "viteConfig": "Optimized Vite Configuration",
+      "terraform": "Terraform - Infrastructure as Code",
+      "techStack": "Technology Stack",
+      "highlights": "Technical Highlights"
+    },
+    "descriptions": {
+      "atomicDesign": "Atomic Design: Components organized in atoms, molecules and organisms for maximum reusability.",
+      "monorepo": "Monorepo: Frontend, backend and infrastructure in a single repository with pnpm workspaces.",
+      "serverless": "Serverless: AWS Lambda + API Gateway for scalable backend.",
+      "modular": "Modular: Infrastructure divided into reusable modules."
+    },
+    "techCategories": {
+      "frontend": "Frontend:",
+      "backend": "Backend & Cloud:",
+      "devops": "DevOps & Quality:",
+      "architecture": "Architecture:"
+    },
+    "highlights": {
+      "performance": "Performance: Vite for ultra-fast build, lazy loading and code splitting",
+      "scalability": "Scalability: Serverless architecture with auto-scaling on AWS",
+      "maintainability": "Maintainability: TypeScript, ESLint, Prettier and automated tests",
+      "i18n": "Internationalization: Multi-language support with react-i18next",
+      "designSystem": "Design System: Atomic Design with reusable components"
+    }
   }
 }

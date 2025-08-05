@@ -1,5 +1,6 @@
 export { Hero } from './Hero'
 export { About } from './About'
+export { PersonalLife } from './PersonalLife'
 export { Skills } from './Skills'
 export { Experience } from './Experience'
 export { Contact } from './Contact'

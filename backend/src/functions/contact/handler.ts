@@ -9,76 +9,103 @@ interface ContactFormData {
   message: string
 }
 
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Content-Type': 'application/json',
+}
+
+const sanitizeInput = (input: string): string => {
+  return input.replace(/[<>"'&]/g, (match) => {
+    const entities: Record<string, string> = {
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#x27;',
+      '&': '&amp;'
+    }
+    return entities[match] || match
+  })
+}
+
+const validateContactData = (data: ContactFormData): string | null => {
+  if (!data.name || !data.email || !data.message) {
+    return 'Todos os campos são obrigatórios'
+  }
+  return null
+}
+
+const createEmailParams = (data: ContactFormData) => {
+  const sanitizedName = sanitizeInput(data.name)
+  const sanitizedEmail = sanitizeInput(data.email)
+  const sanitizedMessage = sanitizeInput(data.message)
+
+  return {
+    Source: process.env.FROM_EMAIL!,
+    Destination: {
+      ToAddresses: [process.env.TO_EMAIL!],
+    },
+    Message: {
+      Subject: {
+        Data: `Contato do site - ${sanitizedName}`,
+        Charset: 'UTF-8',
+      },
+      Body: {
+        Html: {
+          Data: `
+            <h2>Nova mensagem de contato</h2>
+            <p><strong>Nome:</strong> ${sanitizedName}</p>
+            <p><strong>Email:</strong> ${sanitizedEmail}</p>
+            <p><strong>Mensagem:</strong></p>
+            <p>${sanitizedMessage.replace(/\n/g, '&lt;br&gt;')}</p>
+          `,
+          Charset: 'UTF-8',
+        },
+      },
+    },
+  }
+}
+
 export const handler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Content-Type': 'application/json',
-  }
-
   if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers, body: '' }
+    return { statusCode: 200, headers: CORS_HEADERS, body: '' }
   }
 
   try {
     if (!event.body) {
       return {
         statusCode: 400,
-        headers,
+        headers: CORS_HEADERS,
         body: JSON.stringify({ error: 'Body é obrigatório' }),
       }
     }
 
-    const { name, email, message }: ContactFormData = JSON.parse(event.body)
-
-    if (!name || !email || !message) {
+    const contactData: ContactFormData = JSON.parse(event.body)
+    const validationError = validateContactData(contactData)
+    
+    if (validationError) {
       return {
         statusCode: 400,
-        headers,
-        body: JSON.stringify({ error: 'Todos os campos são obrigatórios' }),
+        headers: CORS_HEADERS,
+        body: JSON.stringify({ error: validationError }),
       }
     }
 
-    const emailParams = {
-      Source: process.env.FROM_EMAIL!,
-      Destination: {
-        ToAddresses: [process.env.TO_EMAIL!],
-      },
-      Message: {
-        Subject: {
-          Data: `Contato do site - ${name}`,
-          Charset: 'UTF-8',
-        },
-        Body: {
-          Html: {
-            Data: `
-              <h2>Nova mensagem de contato</h2>
-              <p><strong>Nome:</strong> ${name}</p>
-              <p><strong>Email:</strong> ${email}</p>
-              <p><strong>Mensagem:</strong></p>
-              <p>${message.replace(/\n/g, '<br>')}</p>
-            `,
-            Charset: 'UTF-8',
-          },
-        },
-      },
-    }
-
+    const emailParams = createEmailParams(contactData)
     await sesClient.send(new SendEmailCommand(emailParams))
 
     return {
       statusCode: 200,
-      headers,
+      headers: CORS_HEADERS,
       body: JSON.stringify({ message: 'Email enviado com sucesso!' }),
     }
   } catch (error) {
-    console.error('Erro ao enviar email:', error)
     return {
       statusCode: 500,
-      headers,
+      headers: CORS_HEADERS,
       body: JSON.stringify({ error: 'Erro interno do servidor' }),
     }
   }

@@ -5,4 +5,5 @@ export interface TypingAnimationProps {
   fontSize?: string;
   color?: string;
   fontFamily?: string;
+  style?: React.CSSProperties;
 }

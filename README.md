@@ -166,7 +166,7 @@ O projeto utiliza uma estrutura centralizada de dados pessoais em `frontend/src/
 
 ## 💬 Contato
 
-- **Email**: [patryck.sans@email.com](mailto:patryck.sans@email.com)
+- **Email**: [patrycksans@gmail.com](mailto:patrycksans@gmail.com)
 - **LinkedIn**: [linkedin.com/in/patryck-sans](https://linkedin.com/in/patryck-sans)
 - **GitHub**: [github.com/patryck-sans](https://github.com/patryck-sans)
 

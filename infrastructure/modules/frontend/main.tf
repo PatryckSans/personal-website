@@ -1,5 +1,6 @@
 resource "aws_s3_bucket" "website" {
-  bucket = "personal-website-${var.environment}-${random_string.bucket_suffix.result}"
+  bucket        = "personal-website-${var.environment}-${random_string.bucket_suffix.result}"
+  force_destroy = true
 }
 
 resource "random_string" "bucket_suffix" {

@@ -18,7 +18,7 @@ export const Experience: React.FC = () => {
   const { t } = useTranslation()
 
   return (
-    <ExperienceContainer>
+    <ExperienceContainer id="experience">
       <ExperienceContent>
         <Title>{t('experienceTitle')}</Title>
         <TimelineWrapper>

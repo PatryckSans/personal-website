@@ -1,11 +1,16 @@
 #!/bin/bash
 
-# Build TypeScript
+set -e
+
+FROM_EMAIL="${FROM_EMAIL:-patrycksans@gmail.com}"
+TO_EMAIL="${TO_EMAIL:-patrycksans@gmail.com}"
+
+echo "Building TypeScript..."
 npm run build
 
-# Deploy com SAM
+echo "Deploying with SAM..."
 sam deploy \
   --parameter-overrides \
-    FromEmail="patrycksans@gmail.com" \
-    ToEmail="patrycksans@gmail.com" \
+    FromEmail="$FROM_EMAIL" \
+    ToEmail="$TO_EMAIL" \
   --guided

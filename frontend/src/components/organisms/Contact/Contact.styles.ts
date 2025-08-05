@@ -75,4 +75,8 @@ export const SocialButton = styled(Button)`
     border-color: ${colors.primary};
     color: white;
   }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    margin-bottom: 1rem;
+  }
 `

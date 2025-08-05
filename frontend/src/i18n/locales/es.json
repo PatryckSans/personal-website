@@ -44,5 +44,68 @@
     "systemsDescription": "Licenciatura en Análisis y Desarrollo de Sistemas enfocada en desarrollo web, lógica de programación y construcción de interfaces gráficas.",
     "automationTitle": "Técnico en Automatización Industrial",
     "automationDescription": "Formación técnica en Automatización Industrial, donde profundicé mis conocimientos en tecnología y desarrollé proyectos de IoT, incluyendo la creación de un \"Arpa Láser\"."
+  },
+  "personalLife": {
+    "title": "Más sobre Patryck Sans cuando está lejos de pantallas y código:",
+    "hobbies": {
+      "cycling": {
+        "title": "Ciclismo",
+        "content": "Pedaleando por la ciudad y explorando nuevos caminos"
+      },
+      "sailing": {
+        "title": "Vela",
+        "content": "Navegando en aguas tranquilas y disfrutando la brisa"
+      },
+      "gastronomy": {
+        "title": "Gastronomía",
+        "content": "Explorando nuevos sabores y experiencias culinarias"
+      },
+      "pets": {
+        "title": "Mascotas",
+        "content": "Momentos especiales con mi compañía felina"
+      },
+      "events": {
+        "title": "Eventos",
+        "content": "Creando y viviendo momentos únicos y especiales"
+      }
+    }
+  },
+  "projectShowcase": {
+    "title": "Sitio Portafolio - Arquitectura Técnica",
+    "subtitle": "React 18 • AWS Serverless • Infrastructure as Code",
+    "expandText": "Haz clic para expandir y ver detalles técnicos",
+    "viewGithub": "Ver en GitHub",
+    "tabs": {
+      "structure": "Estructura",
+      "code": "Código",
+      "infrastructure": "Infraestructura"
+    },
+    "sections": {
+      "projectOrganization": "Organización del Proyecto",
+      "customHook": "Custom Hook - useIsMobile",
+      "viteConfig": "Configuración Vite Optimizada",
+      "terraform": "Terraform - Infrastructure as Code",
+      "techStack": "Stack Tecnológico",
+      "highlights": "Aspectos Técnicos Destacados"
+    },
+    "descriptions": {
+      "atomicDesign": "Atomic Design: Componentes organizados en atoms, molecules y organisms para máxima reutilización.",
+      "monorepo": "Monorepo: Frontend, backend e infraestructura en un solo repositorio con pnpm workspaces.",
+      "serverless": "Serverless: AWS Lambda + API Gateway para backend escalable.",
+      "modular": "Modular: Infraestructura dividida en módulos reutilizables."
+    },
+    "techCategories": {
+      "frontend": "Frontend:",
+      "backend": "Backend y Cloud:",
+      "devops": "DevOps y Calidad:",
+      "architecture": "Arquitectura:"
+    },
+    "highlights": {
+      "performance": "Rendimiento: Vite para build ultra-rápido, lazy loading y code splitting",
+      "scalability": "Escalabilidad: Arquitectura serverless con auto-scaling en AWS",
+      "maintainability": "Mantenibilidad: TypeScript, ESLint, Prettier y pruebas automatizadas",
+      "i18n": "Internacionalización: Soporte multi-idioma con react-i18next",
+      "designSystem": "Design System: Atomic Design con componentes reutilizables"
+    }
   }
 }

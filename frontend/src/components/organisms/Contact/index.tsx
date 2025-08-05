@@ -5,6 +5,7 @@ import {
   GithubOutlined,
   LinkedinOutlined,
   MailOutlined,
+  WhatsAppOutlined,
 } from '@ant-design/icons'
 import {
   ContactContainer,
@@ -37,7 +38,7 @@ export const Contact: React.FC = () => {
   }
 
   return (
-    <ContactContainer>
+    <ContactContainer id="contact">
       <ContactContent>
         <InteractiveCat width={600} height={90} />
         <StyledCard>
@@ -93,6 +94,11 @@ export const Contact: React.FC = () => {
                     <SocialButton
                       icon={<MailOutlined />}
                       href="mailto:patrycksans@gmail.com"
+                    />
+                    <SocialButton
+                      icon={<WhatsAppOutlined />}
+                      href="https://wa.me/5511934952279"
+                      target="_blank"
                     />
                   </div>
                 </Col>

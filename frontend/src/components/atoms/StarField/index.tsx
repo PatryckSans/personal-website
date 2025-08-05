@@ -21,7 +21,7 @@ export const StarField = forwardRef<{ triggerWarp: () => void }, StarFieldProps>
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animationRef = useRef<number>()
   const starsRef = useRef<Star[]>([])
-  const [warp, setWarp] = useState(0)
+  const [isWarping, setIsWarping] = useState(false)
 
   const initializeStars = (canvas: HTMLCanvasElement) => {
     
@@ -40,7 +40,7 @@ export const StarField = forwardRef<{ triggerWarp: () => void }, StarFieldProps>
   const moveStars = (canvas: HTMLCanvasElement) => {
     for (let i = 0; i < numStars; i++) {
       const star = starsRef.current[i]
-      star.z -= warp === 1 ? 10 : 1
+      star.z -= isWarping ? 10 : 1
       
       if (star.z <= 0) {
         star.z = canvas.width
@@ -59,7 +59,7 @@ export const StarField = forwardRef<{ triggerWarp: () => void }, StarFieldProps>
       initializeStars(canvas)
     }
 
-    if (warp === 0) {
+    if (!isWarping) {
       ctx.fillStyle = "rgba(0,10,20,1)"
       ctx.fillRect(0, 0, canvas.width, canvas.height)
     }
@@ -71,7 +71,7 @@ export const StarField = forwardRef<{ triggerWarp: () => void }, StarFieldProps>
       const pixelY = (star.y - centerY) * (focalLength / star.z) + centerY
       const pixelRadius = 1 * (focalLength / star.z)
       
-      if (warp === 1) {
+      if (isWarping) {
         ctx.strokeStyle = `rgba(209, 255, 255, ${star.o})`
         ctx.lineWidth = pixelRadius
         ctx.beginPath()
@@ -97,7 +97,7 @@ export const StarField = forwardRef<{ triggerWarp: () => void }, StarFieldProps>
   }
 
   const handleWarp = () => {
-    setWarp(1)
+    setIsWarping(true)
   }
 
   useImperativeHandle(ref, () => ({
@@ -123,7 +123,7 @@ export const StarField = forwardRef<{ triggerWarp: () => void }, StarFieldProps>
 
   useEffect(() => {
     executeFrame()
-  }, [warp])
+  }, [isWarping])
 
   return (
     <StarFieldContainer className={className}>

@@ -24,6 +24,12 @@ export const Hero: React.FC = () => {
           fontSize="1.8rem"
           color={colors.secondary}
           fontFamily="JetBrains Mono"
+          style={{ 
+            fontSize: 'clamp(1rem, 4vw, 1.8rem)',
+            maxWidth: 'calc(100vw - 2rem)',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
+          }}
         />
         <Description>
           {t('hero.description')}

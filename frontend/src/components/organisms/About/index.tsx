@@ -14,6 +14,7 @@ import {
   InfoTitle,
   InfoDescription,
 } from './About.styles'
+import { PersonalLife } from '../PersonalLife'
 
 export const About: React.FC = () => {
   const { t } = useTranslation()
@@ -26,7 +27,7 @@ export const About: React.FC = () => {
   )
 
   return (
-    <AboutContainer>
+    <AboutContainer id="about">
       <AboutHeader>
         <Title>{t('about.title')}</Title>
         <Subtitle>{t('about.subtitle')}</Subtitle>
@@ -42,6 +43,7 @@ export const About: React.FC = () => {
         <InfoSection>
           <InfoTitle>{t('about.role')}</InfoTitle>
           <InfoDescription>{t('about.description')}</InfoDescription>
+          <PersonalLife />
         </InfoSection>
       </AboutContent>
     </AboutContainer>

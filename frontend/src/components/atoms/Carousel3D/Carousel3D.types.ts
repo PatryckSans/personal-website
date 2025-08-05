@@ -3,6 +3,7 @@ export interface Carousel3DItem {
   alt?: string;
   href?: string;
   type?: 'image' | 'video';
+  caption?: string;
 }
 
 export interface Carousel3DProps {

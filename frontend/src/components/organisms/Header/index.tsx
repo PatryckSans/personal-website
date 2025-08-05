@@ -1,12 +1,7 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Drawer } from 'antd'
-import {
-  MenuOutlined,
-  UserOutlined,
-  SunOutlined,
-  MoonOutlined,
-} from '@ant-design/icons'
+import { MenuOutlined, SunOutlined, MoonOutlined } from '@ant-design/icons'
 import {
   HeaderContainer,
   LogoContainer,
@@ -20,19 +15,24 @@ import {
   StyledSelectMobile,
   StyledSwitch,
   StyledButton,
-  StyledAvatar,
 } from './Header.styles'
 import { HeaderProps } from './Header.types'
 
-export const Header = ({ onThemeToggle, isDarkTheme = true }: HeaderProps) => {
+export const Header = ({
+  onThemeToggle,
+  isDarkTheme = true,
+  isThemeDisabled = false,
+}: HeaderProps) => {
   const { t, i18n } = useTranslation()
   const [drawerVisible, setDrawerVisible] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
 
   const menuItems = useMemo(
     () => [
       { key: 'about', label: t('about-title') },
-      { key: 'projects', label: t('projects') },
+      { key: 'skills', label: t('skills') },
       { key: 'experience', label: t('experience') },
+      { key: 'projects', label: t('projects') },
       { key: 'contact', label: t('contact') },
     ],
     [t]
@@ -48,11 +48,51 @@ export const Header = ({ onThemeToggle, isDarkTheme = true }: HeaderProps) => {
     i18n.changeLanguage(value as string)
   }
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      const headerHeight = 80
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset - headerHeight
+      
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      })
+    }
+    setDrawerVisible(false)
+  }
+
+  const handleMenuClick = ({ key }: { key: string }) => {
+    scrollToSection(key)
+  }
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['about', 'skills', 'experience', 'projects', 'contact']
+      const headerHeight = 80
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          if (rect.top <= headerHeight && rect.bottom >= headerHeight) {
+            setActiveSection(sectionId)
+            break
+          }
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll() // Check initial position
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <HeaderContainer>
       <LogoContainer>
-        <StyledAvatar size="large" icon={<UserOutlined />} />
-        <span>Portfolio</span>
+        <span>{'</>'} Patryck Sans</span>
       </LogoContainer>
 
       <DesktopNav>
@@ -61,6 +101,8 @@ export const Header = ({ onThemeToggle, isDarkTheme = true }: HeaderProps) => {
           items={menuItems}
           overflowedIndicator={null}
           disabledOverflow
+          onClick={handleMenuClick}
+          selectedKeys={[activeSection]}
         />
 
         <ControlsContainer>
@@ -76,6 +118,7 @@ export const Header = ({ onThemeToggle, isDarkTheme = true }: HeaderProps) => {
             onChange={onThemeToggle}
             checkedChildren={<MoonOutlined />}
             unCheckedChildren={<SunOutlined />}
+            disabled={isThemeDisabled}
           />
         </ControlsContainer>
       </DesktopNav>
@@ -95,7 +138,12 @@ export const Header = ({ onThemeToggle, isDarkTheme = true }: HeaderProps) => {
         open={drawerVisible}
         width={280}
       >
-        <StyledMenu mode="vertical" items={menuItems} />
+        <StyledMenu
+          mode="vertical"
+          items={menuItems}
+          onClick={handleMenuClick}
+          selectedKeys={[activeSection]}
+        />
 
         <DrawerControlsContainer>
           <StyledSelectMobile
@@ -112,6 +160,7 @@ export const Header = ({ onThemeToggle, isDarkTheme = true }: HeaderProps) => {
               onChange={onThemeToggle}
               checkedChildren={<MoonOutlined />}
               unCheckedChildren={<SunOutlined />}
+              disabled={isThemeDisabled}
             />
           </ThemeSectionContainer>
         </DrawerControlsContainer>

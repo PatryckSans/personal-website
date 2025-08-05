@@ -5,10 +5,6 @@ const warpZoom = keyframes`
     transform: scale(1);
     opacity: 1;
   }
-  /* 20% {
-    transform: scale(1.2);
-    opacity: 0.8;
-  } */
   100% {
     transform: scale(20);
     opacity: 0;

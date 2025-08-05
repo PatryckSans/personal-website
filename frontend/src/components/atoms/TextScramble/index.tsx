@@ -21,7 +21,7 @@ interface TextScrambleProps {
 
 class TextScrambleEffect {
   private el: HTMLElement;
-  private chars = '!<>-_\\/[]{}—=+*^?#________'
+  private chars = '!<>-_\\/[]{}—=+*^?#_'
   private queue: Array<{from: string, to: string, start: number, end: number, char?: string}> = []
   private frame = 0
   private frameRequest?: number
@@ -67,13 +67,13 @@ class TextScrambleEffect {
           char = this.randomChar()
           this.queue[i].char = char
         }
-        output += `<span class="dud">${char}</span>`
+        output += char
       } else {
         output += from
       }
     }
     
-    this.el.innerHTML = output
+    this.el.textContent = output
     
     if (complete === this.queue.length) {
       this.resolve?.()

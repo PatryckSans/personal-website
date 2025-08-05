@@ -21,10 +21,17 @@ export const colors = {
   secondary: '#80c7f9',
   accent: '#10B981',
   background: 'linear-gradient(180deg,#430559,#65177a 57%,#000)',
+  cardBg: '#1F2937',
   text: '#FFFFFF',
   textSubtitle: '#E5E7EB',
   textMuted: '#9CA3AF',
   textHighlight: '#80c7f9',
+  waves: [
+    'rgba(37, 21, 37, 0.356)',
+    'rgba(37, 21, 37, 0.397)',
+    'rgba(37, 21, 37, 0.596)',
+    'rgba(37, 21, 37, 0.801)',
+  ],
 }
 
 export const fontSizes = {

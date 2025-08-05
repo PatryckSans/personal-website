@@ -113,6 +113,16 @@ export const StyledMenu = styled(Menu)`
       color: ${colors.textHighlight} !important;
       transform: translateY(4px) scale(1.1) !important;
     }
+
+    &.ant-menu-item-selected {
+      color: ${colors.textHighlight} !important;
+      background: rgba(128, 199, 249, 0.1) !important;
+      border-radius: 6px !important;
+      
+      &::after {
+        border-bottom: 2px solid ${colors.textHighlight} !important;
+      }
+    }
   }
 `
 
