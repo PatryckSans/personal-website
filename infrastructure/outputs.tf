@@ -17,3 +17,8 @@ output "website_url" {
   description = "Website URL"
   value       = module.frontend.website_url
 }
+
+output "cloudfront_distribution_id" {
+  description = "CloudFront distribution ID"
+  value       = module.frontend.cloudfront_distribution_id
+}

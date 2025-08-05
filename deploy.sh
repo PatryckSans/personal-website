@@ -29,21 +29,51 @@ echo "📦 Building frontend..."
 cd ../frontend
 echo "VITE_API_BASE_URL=$API_URL" > .env.production
 
-# Tentar build, se falhar usar arquivos públicos
-if pnpm build; then
-    echo "✅ React build completed"
-    aws s3 sync dist/ "s3://$BUCKET_NAME" --delete
+# Verificar se node_modules existe
+if [ ! -d "node_modules" ]; then
+    echo "📦 Installing dependencies..."
+    pnpm install
+fi
+
+# Tentar build com tratamento de erros
+echo "🔨 Attempting React build..."
+if pnpm build 2>&1; then
+    echo "✅ React build completed successfully"
+    if [ -d "dist" ] && [ "$(ls -A dist)" ]; then
+        echo "📤 Uploading React build to S3..."
+        aws s3 sync dist/ "s3://$BUCKET_NAME" --delete
+    else
+        echo "❌ Build directory is empty, using fallback"
+        aws s3 sync public/ "s3://$BUCKET_NAME" --delete
+    fi
 else
-    echo "⚠️ Build failed, using public files"
-    aws s3 sync public/ "s3://$BUCKET_NAME" --delete
+    echo "⚠️ React build failed, attempting to fix common issues..."
+    
+    # Usar script auxiliar para corrigir erros
+    if [ -f "../fix-build-errors.sh" ]; then
+        ../fix-build-errors.sh
+    fi
+    
+    # Tentar build novamente
+    echo "🔨 Retrying build after fixes..."
+    if pnpm build 2>&1; then
+        echo "✅ Build successful after fixes"
+        aws s3 sync dist/ "s3://$BUCKET_NAME" --delete
+    else
+        echo "❌ Build still failing, using public files as fallback"
+        aws s3 sync public/ "s3://$BUCKET_NAME" --delete
+    fi
 fi
 
 # Invalidar cache do CloudFront
 echo "🔄 Invalidating CloudFront cache..."
-CLOUDFRONT_ID="$(aws cloudfront list-distributions --query "DistributionList.Items[?contains(DomainName, 'cloudfront.net')].Id" --output text | head -1)"
-if [ -n "$CLOUDFRONT_ID" ]; then
-    aws cloudfront create-invalidation --distribution-id "$CLOUDFRONT_ID" --paths "/*" > /dev/null
-    echo "✅ Cache invalidated"
+CLOUDFRONT_ID="$(terraform output -raw cloudfront_distribution_id 2>/dev/null || aws cloudfront list-distributions --query "DistributionList.Items[?contains(DomainName, 'cloudfront.net')].Id" --output text | head -1)"
+if [ -n "$CLOUDFRONT_ID" ] && [ "$CLOUDFRONT_ID" != "null" ]; then
+    echo "🔄 Using CloudFront ID: $CLOUDFRONT_ID"
+    aws cloudfront create-invalidation --distribution-id "$CLOUDFRONT_ID" --paths "/*" > /dev/null 2>&1
+    echo "✅ Cache invalidation requested"
+else
+    echo "⚠️ CloudFront distribution ID not found, skipping cache invalidation"
 fi
 
 echo "✅ Deploy completed!"

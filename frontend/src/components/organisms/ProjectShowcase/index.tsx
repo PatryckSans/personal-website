@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Card, Tabs, Button, Tag, Typography, Collapse } from 'antd'
+import { Tabs, Button, Tag, Typography, Collapse } from 'antd'
 import {
   GithubOutlined,
   FolderOutlined,
